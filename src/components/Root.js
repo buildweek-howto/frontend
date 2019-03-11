@@ -4,6 +4,9 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import { createGlobalStyle } from 'styled-components';
 import PrivateRoute from './PrivateRoute';
 
+import Login from './Login';
+import Signup from './Signup';
+
 const Root = ({ store }) => (
   <Provider store={store}>
     <Router>
@@ -13,11 +16,11 @@ const Root = ({ store }) => (
           <Redirect exact from="/" to="landing-page" />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
-          <PrivateRoute path="/onboard" component={Dashboard} />
+          {/* <PrivateRoute path="/onboard" component={Dashboard} />
           <PrivateRoute path="/posts" component={Posts} />
-          <Route component={NoMatch} />
+          <Route component={NoMatch} /> */}
         </Switch>
-      </React.Fragmen>
+      </React.Fragment>
     </Router>
   </Provider>
 );
