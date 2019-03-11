@@ -1,0 +1,7 @@
+/* State Structure
+
+- articles
+- users
+- ...
+
+*/
