@@ -1,7 +1,7 @@
-/* State Structure
+import { combineReducers } from 'redux';
 
-- articles
-- users
-- ...
-
-*/
+export default combineReducers({
+  users,
+  posts,
+  categories
+});
