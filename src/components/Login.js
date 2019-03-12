@@ -4,14 +4,16 @@ import { useInput } from '../hooks';
 import { authLogin } from '../actions';
 import LoginForm from '../components/LoginForm';
 
-const Login = ({ authLogin }) => {
+const Login = ({ authLogin, history: { push } }) => {
   const [username, setUsername, updateUsername] = useInput();
   const [password, setPassword, updatePassword] = useInput();
 
   const handleSubmit = e => {
     e.preventDefault();
-    authLogin({ username, password });
-    setUsername(''); setPassword('');
+    authLogin({ username, password }).then(() => {
+      setUsername(''); setPassword('');
+      push('/dashboard');
+    });
   };
 
   return (
