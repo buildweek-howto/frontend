@@ -1,8 +1,10 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
-import PrivateRoute from './PrivateRoute';
+import theme from '../theme';
+// import PrivateRoute from './PrivateRoute';
+import { MuiThemeProvider } from '@material-ui/core/styles'; 
 
 import Login from './Login';
 import Signup from './Signup';
@@ -10,17 +12,23 @@ import Signup from './Signup';
 const Root = ({ store }) => (
   <Provider store={store}>
     <Router>
-      <React.Fragment>
+      <MuiThemeProvider theme={theme}>
         <GlobalStyles />
         <Switch>
-          <Redirect exact from="/" to="landing-page" />
+          <Route
+            exact path="/"
+            component={() => {
+              window.location.href = 'https://how-to.now.sh/';
+              return null;
+            }}
+          />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           {/* <PrivateRoute path="/onboard" component={Dashboard} />
           <PrivateRoute path="/posts" component={Posts} />
           <Route component={NoMatch} /> */}
         </Switch>
-      </React.Fragment>
+      </MuiThemeProvider>
     </Router>
   </Provider>
 );

@@ -2,20 +2,32 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { useInput } from '../hooks';
 import { authSignup } from '../actions';
+import SignupForm from './SignupForm';
 
-const Signup = () => {
+const Signup = ({ authSignup }) => {
   const [email, setEmail, updateEmail] = useInput();
   const [username, setUsername, updateUsername] = useInput();
   const [password, setPassword, updatePassword] = useInput();
-  const [firstname, setFirstname, updateFirstname] = useInput();
-  const [lastname, setLastname, updateLastname] = useInput();
+  const [firstName, setFirstName, updateFirstName] = useInput();
+  const [lastName, setLastName, updateLastName] = useInput();
 
   const handleSubmit = e => {
     e.preventDefault();
-    authSignup({ email, username, password, firstname, lastname });
+    authSignup({ email, username, password, firstName, lastName });
+    setEmail(''); setUsername(''); setPassword('');
+    setFirstName(''); setLastName('');
   };
 
-  return <form onSubmit={handleSubmit} />;
+  return (
+    <SignupForm
+      handleSubmit={handleSubmit}
+      email={email} updateEmail={updateEmail}
+      username={username} updateUsername={updateUsername}
+      password={password} updatePassword={updatePassword}
+      firstName={firstName} updateFirstName={updateFirstName}
+      lastName={lastName} updateLastName={updateLastName}
+    />
+  );
 };
 
 export default connect(
