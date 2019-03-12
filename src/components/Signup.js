@@ -4,7 +4,7 @@ import { useInput } from '../hooks';
 import { authSignup } from '../actions';
 import SignupForm from './SignupForm';
 
-const Signup = ({ authSignup }) => {
+const Signup = ({ authSignup, history: { push } }) => {
   const [email, setEmail, updateEmail] = useInput();
   const [username, setUsername, updateUsername] = useInput();
   const [password, setPassword, updatePassword] = useInput();
@@ -13,9 +13,11 @@ const Signup = ({ authSignup }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    authSignup({ email, username, password, firstName, lastName });
-    setEmail(''); setUsername(''); setPassword('');
-    setFirstName(''); setLastName('');
+    authSignup({ email, username, password, firstName, lastName }).then(() => {
+      setEmail(''); setUsername(''); setPassword('');
+      setFirstName(''); setLastName('');
+      push('/dashboard');
+    });
   };
 
   return (
