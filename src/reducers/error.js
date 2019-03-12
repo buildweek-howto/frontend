@@ -17,7 +17,9 @@ export default (state, action) => {
     case ADD_CATEGORY_FAILURE:
     case EDIT_CATEGORY_FAILURE:
     case DELETE_CATEGORY_FAILURE:
-      return action.payload.message;
+      return action.payload.response
+        ? action.payload.response.data.message
+        : '?';
     default:
       return '';
   }
