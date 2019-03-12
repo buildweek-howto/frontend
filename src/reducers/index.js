@@ -6,8 +6,8 @@ import currentUser from './currentUser';
 import posts from './posts';
 
 export default combineReducers({
-  users,
+  categories,
   currentUser,
   posts,
-  categories
+  status,
 });
