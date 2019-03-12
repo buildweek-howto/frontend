@@ -15,7 +15,7 @@ const Signup = ({ authSignup }) => {
     e.preventDefault();
     authSignup({ email, username, password, firstName, lastName });
     setEmail(''); setUsername(''); setPassword('');
-    setFirstname(''); setLastname('');
+    setFirstName(''); setLastName('');
   };
 
   return (
@@ -24,8 +24,8 @@ const Signup = ({ authSignup }) => {
       email={email} updateEmail={updateEmail}
       username={username} updateUsername={updateUsername}
       password={password} updatePassword={updatePassword}
-      firstname={firstname} updateFirstname={updateFirstname}
-      lastname={lastname} updateLastname={updateLastname}
+      firstName={firstName} updateFirstName={updateFirstName}
+      lastName={lastName} updateLastName={updateLastName}
     />
   );
 };

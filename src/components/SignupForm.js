@@ -58,8 +58,8 @@ function SignupForm(props) {
     email, updateEmail,
     username, updateUsername,
     password, updatePassword,
-    firstname, updateFirstname,
-    lastname, updateLastname,
+    firstName, updateFirstname,
+    lastName, updateLastname,
     handleSubmit
   } = props;
 
@@ -84,12 +84,12 @@ function SignupForm(props) {
           </FormControl>
           <div className={classes.nameContainer}>
             <FormControl margin="normal" required className={classes.nameInput}>
-              <InputLabel htmlFor="firstname">First Name</InputLabel>
-              <Input value={firstname} onChange={updateFirstname} id="firstname" name="firstname" autoComplete="firstname" autoFocus />
+              <InputLabel htmlFor="firstName">First Name</InputLabel>
+              <Input value={firstName} onChange={updateFirstname} id="firstName" name="firstName" autoComplete="firstName" autoFocus />
             </FormControl>
             <FormControl margin="normal" required className={classes.nameInput}>
-              <InputLabel htmlFor="lastname">Last Name</InputLabel>
-              <Input value={lastname} onChange={updateLastname} id="lastname" name="lastname" autoComplete="lastname" autoFocus />
+              <InputLabel htmlFor="lastName">Last Name</InputLabel>
+              <Input value={lastName} onChange={updateLastname} id="lastName" name="lastName" autoComplete="lastName" autoFocus />
             </FormControl>
           </div>
           <FormControl margin="normal" required fullWidth>
