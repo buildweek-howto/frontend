@@ -15,11 +15,15 @@ class Dashboard extends Component {
   }
 
   render() {
+    const { history, match, posts } = this.props;
+
     return (
       <div className="app">
-        <AppBar history={this.props.history} />
-        <PrivateRoute path={`${this.props.match.path}/new`} component={NewPost} />
-        <HowToCard />
+        <AppBar history={history} />
+        <PrivateRoute path={`${match.path}/new`} component={NewPost} />
+        {posts.allPosts && posts.allPosts.map(post => (
+          <HowToCard key={post.id} {...post} />
+        ))}
       </div>
     );
   }
