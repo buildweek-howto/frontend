@@ -18,7 +18,7 @@ import { serverHandshake } from './auth';
 export const fetchPosts = () => async dispatch => {
   dispatch({ type: FETCH_POSTS_START });
   try {
-    const success = await serverHandshake().get('/auth/posts');
+    const success = await serverHandshake().get('/posts');
     dispatch({ type: FETCH_POSTS_SUCCESS, payload: success.data });
     return success;
   } catch (error) {
@@ -30,7 +30,7 @@ export const fetchPosts = () => async dispatch => {
 export const addPost = postData => async dispatch => {
   dispatch({ type: ADD_POST_START });
   try {
-    const success = await serverHandshake().post('/auth/posts', postData);
+    const success = await serverHandshake(true).post('/posts', postData);
     dispatch({ type: ADD_POST_SUCCESS, payload: success.data });
     return success;
   } catch (error) {
@@ -42,7 +42,7 @@ export const addPost = postData => async dispatch => {
 export const editPost = (id, postData) => async dispatch => {
   dispatch({ type: EDIT_POST_START });
   try {
-    const success = await serverHandshake().put('/auth/posts', { id, postData });
+    const success = await serverHandshake(true).put('/posts', { id, postData });
     dispatch({ type: EDIT_POST_SUCCESS, payload: success.data });
     return success;
   } catch (error) {
@@ -54,7 +54,7 @@ export const editPost = (id, postData) => async dispatch => {
 export const deletePost = id => async dispatch => {
   dispatch({ type: DELETE_POST_START });
   try {
-    const success = await serverHandshake().delete('/auth/posts', id);
+    const success = await serverHandshake(true).delete('/posts', id);
     dispatch({ type: DELETE_POST_SUCCESS, payload: success.data });
     return success;
   } catch (error) {
