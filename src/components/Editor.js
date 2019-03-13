@@ -1,14 +1,11 @@
-
 import React from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-
-
 class Editor extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { text: '' } // You can also pass a Quill Delta here
+    this.state = { text: '' }
     this.handleChange = this.handleChange.bind(this)
   }
 
@@ -19,7 +16,7 @@ class Editor extends React.Component {
   render() {
     return (
       <ReactQuill value={this.state.text}
-                  onChange={this.handleChange} />
+        onChange={this.handleChange} />
     )
   }
 }
