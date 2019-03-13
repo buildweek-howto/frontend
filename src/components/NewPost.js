@@ -6,14 +6,13 @@ import EditorButtons from './EditorButtons';
 class NewPost extends Component {
   render() {
     return (
-      <div className="app">
-      <AppBar/>
-      <Editor/>
-      <EditorButtons/>
-      {/* Search returned corpuse */}
-      </div>
-      )
+      <React.Fragment>
+        <Editor />
+        <EditorButtons />
+        {/* Search returned corpuse */}
+      </React.Fragment>
+    );
   }
-  }
-  
-  export default NewPost;
+}
+
+export default NewPost;

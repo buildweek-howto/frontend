@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import AppBar from './AppBar';
 import { fetchUsers, fetchPosts, fetchCategories } from '../actions';
-
+import PrivateRoute from './PrivateRoute';
+import AppBar from './AppBar';
+import NewPost from './NewPost';
+import HowToCard from './HowToCard';
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -15,6 +17,8 @@ class Dashboard extends Component {
     return (
       <div className="app">
         <AppBar history={this.props.history} />
+        <PrivateRoute path={`${this.props.match.path}/new`} component={NewPost} />
+        <HowToCard />
       </div>
     );
   }
