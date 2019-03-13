@@ -11,7 +11,7 @@ import NewPost from './NewPost';
 import SearchContainer from './SearchContainer';
 import ViewHowTo from './ViewHowTo';
 import UserProfile from './UserProfile';
-
+import AllPosts from './AllPosts';
 
 const Root = ({ store }) => (
   <Provider store={store}>
@@ -43,6 +43,7 @@ const Root = ({ store }) => (
           <Route path="/search" component={SearchContainer} />
           <Route path="/post/sample" component={ViewHowTo} />
           <Route path="/profile" component={UserProfile} />
+          <Route path="/allposts" component={AllPosts} />
         </Switch>
       </MuiThemeProvider>
     </Router>
