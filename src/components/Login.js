@@ -2,11 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { useInput } from '../hooks';
 import { authLogin } from '../actions';
-import LoginForm from '../components/LoginForm';
+import LoginForm from './LoginForm';
+import RegisterRedirect from './RegisterRedirect';
 
-const Login = ({ authLogin, history: { push } }) => {
+const Login = ({ authLogin, history: { push, replace } }) => {
   const [username, setUsername, updateUsername] = useInput();
   const [password, setPassword, updatePassword] = useInput();
+  const loggedIn = localStorage.getItem('userToken');
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -16,7 +18,11 @@ const Login = ({ authLogin, history: { push } }) => {
     });
   };
 
-  return (
+  if (loggedIn) setTimeout(() => replace('/dashboard'), 10000);
+
+  return loggedIn ? (
+    <RegisterRedirect />
+  ) : (
     <LoginForm
       handleSubmit={handleSubmit}
       username={username}
@@ -28,5 +34,6 @@ const Login = ({ authLogin, history: { push } }) => {
 };
 
 export default connect(
-  null, { authLogin }
+  null,
+  { authLogin }
 )(Login);
