@@ -6,33 +6,41 @@ export default (state = [], action) => {
     case ADD_POST_SUCCESS:
     case EDIT_POST_SUCCESS:
     case DELETE_POST_SUCCESS:
-
       return action.payload;
     default:
       return state;
   }
 };
 
-export const getPostsByUser = (state, userId) => {
-  if (!userId) {
-    return state;
-  } else {
-    return state.filter(post => post.category_id === userId);
-  }
-};
+const getCategoryPosts = ({ posts_categories }, id) =>
+  posts_categories.reduce((acc, cur) => (cur.category_id === id ? [...acc, cur.post_id] : acc), []);
 
-export const getPostCategories = ({posts_categories}, id) => posts_categories.reduce(
-  (acc,cur) => cur.post_id === id ? [...acc, cur.category_id] : acc,
-[]);
+const getPostsBySearch = (state, filter) => ({
+  ...state,
+  allPosts: state.allPosts.filter(({ title, body }) => title.includes(filter) || body.includes(filter))
+});
 
-export const getCategoryPosts = ({posts_categories}, id) => posts_categories.reduce(
-  (acc, cur) => cur.category_id === id ? [ ...acc, cur.post_id ] : acc,
-[]);
-
-export const getPostsByCategory = (state, id) => {
+const getPostsByCategory = (state, id) => {
+  console.log(state);
   const validPosts = getCategoryPosts(state, id);
   return {
     ...state,
     allPosts: state.allPosts.filter(post => validPosts.includes(post.id))
-  }
-}
+  };
+};
+
+const getPostsByUser = (state, userId) => ({
+  ...state,
+  allPosts: state.allPosts.filter(post => post.category_id === userId)
+});
+
+export const getFilteredPosts = (state, { searchInput, category, user }) => {
+  if (state.length === 0) return state;
+  if (searchInput) state = getPostsBySearch(state, searchInput);
+  if (category) state = getPostsByCategory(state, category);
+  if (user) state = getPostsByUser(state, user);
+  return state;
+};
+
+export const getPostCategories = ({ posts_categories }, id) =>
+  posts_categories.reduce((acc, cur) => (cur.post_id === id ? [...acc, cur.category_id] : acc), []);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -18,6 +19,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import PowerSettingsNew from '@material-ui/icons/PowerSettingsNew';
+import { updateInput } from '../actions';
 
 const styles = theme => ({
   root: {
@@ -34,6 +36,7 @@ const styles = theme => ({
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
+      fontFamily: "'Leckerli One', cursive",
       cursor: 'pointer'
     }
   },
@@ -100,7 +103,7 @@ class PrimarySearchAppBar extends React.Component {
     mobileMoreAnchorEl: null
   };
 
-  handleHomeClick = (mobile) => {
+  handleHomeClick = mobile => {
     this.props.history.push('/dashboard');
     if (mobile) this.handleMobileMenuClose();
   };
@@ -131,9 +134,13 @@ class PrimarySearchAppBar extends React.Component {
     this.props.history.replace('/login');
   };
 
+  handleInput = (e) => {
+    this.props.updateInput(e.target.value);
+  }
+
   render() {
     const { anchorEl, mobileMoreAnchorEl } = this.state;
-    const { classes } = this.props;
+    const { classes, searchInput } = this.props;
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -193,7 +200,7 @@ class PrimarySearchAppBar extends React.Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
-            <Typography onClick={this.handleHomeClick} className={classes.title} variant="h6" color="inherit" noWrap>
+            <Typography onClick={this.handleHomeClick} className={classes.title} variant="h5" color="inherit" noWrap>
               How To
             </Typography>
             <div className={classes.search}>
@@ -202,6 +209,8 @@ class PrimarySearchAppBar extends React.Component {
               </div>
               <InputBase
                 placeholder="Search…"
+                value={searchInput}
+                onChange={this.handleInput}
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput
@@ -247,4 +256,9 @@ PrimarySearchAppBar.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(PrimarySearchAppBar);
+const mapStateToProps = ({ searchInput }) => ({ searchInput });
+
+export default connect(
+  mapStateToProps,
+  { updateInput }
+)(withStyles(styles)(PrimarySearchAppBar));
