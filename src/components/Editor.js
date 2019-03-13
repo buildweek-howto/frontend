@@ -3,6 +3,8 @@ import React from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
+
+
 class Editor extends React.Component {
   constructor(props) {
     super(props)

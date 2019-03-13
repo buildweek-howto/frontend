@@ -5,6 +5,7 @@ import { createGlobalStyle } from 'styled-components';
 import theme from '../theme';
 // import PrivateRoute from './PrivateRoute';
 import { MuiThemeProvider } from '@material-ui/core/styles'; 
+import Dashboard from './Dashboard';
 import App from './App';
 
 import Login from './Login';
@@ -25,7 +26,7 @@ const Root = ({ store }) => (
           />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
-          <Route path="/dashboard" component={App} />
+          <Route path="/dashboard" component={Dashboard} />
           {/* <PrivateRoute path="/onboard" component={Dashboard} />
           <PrivateRoute path="/posts" component={Posts} />
           <Route component={NoMatch} /> */}
