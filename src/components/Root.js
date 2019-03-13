@@ -7,7 +7,6 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import Dashboard from './Dashboard';
-import App from './App';
 import Register from './Register';
 
 const Root = ({ store }) => (
@@ -25,6 +24,7 @@ const Root = ({ store }) => (
           />
           <Route exact path="/(login|signup)" component={Register} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
+          {/* <PrivateRoute path="/dashboard/new" component={NewPost} /> */}
           {/* <PrivateRoute path="/posts" component={Posts} />
           <Route component={NoMatch} /> */}
         </Switch>

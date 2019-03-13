@@ -11,10 +11,12 @@ import Menu from '@material-ui/core/Menu';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
+import AddBox from '@material-ui/icons/AddBox';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import PowerSettingsNew from '@material-ui/icons/PowerSettingsNew';
 
 const styles = theme => ({
   root: {
@@ -56,6 +58,10 @@ const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  interact: {
+    display: 'flex',
+    alignItems: 'center'
   },
   inputRoot: {
     color: 'inherit',
@@ -109,6 +115,11 @@ class PrimarySearchAppBar extends React.Component {
     this.setState({ mobileMoreAnchorEl: null });
   };
 
+  handleLogout = () => {
+    localStorage.removeItem('userToken');
+    this.props.history.replace('/login');
+  }
+
   render() {
     const { anchorEl, mobileMoreAnchorEl } = this.state;
     const { classes } = this.props;
@@ -125,6 +136,7 @@ class PrimarySearchAppBar extends React.Component {
       >
         <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
         <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
+        <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
       </Menu>
     );
 
@@ -158,6 +170,12 @@ class PrimarySearchAppBar extends React.Component {
           </IconButton>
           <p>Profile</p>
         </MenuItem>
+        <MenuItem onClick={this.handleLogout}>
+          <IconButton color="inherit">
+            <PowerSettingsNew />
+          </IconButton>
+          <p>Logout</p>
+        </MenuItem>
       </Menu>
     );
 
@@ -179,6 +197,11 @@ class PrimarySearchAppBar extends React.Component {
                   input: classes.inputInput,
                 }}
               />
+            </div>
+            <div className={classes.interact}>
+              <IconButton color="inherit">
+                <AddBox />
+              </IconButton>
             </div>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
