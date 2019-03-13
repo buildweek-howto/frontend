@@ -1,0 +1,32 @@
+.body {
+  width: 80%;
+  padding: 3%;
+}
+
+.cards {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+div.MuiGrid-item-135 {
+  align-content: center;
+  justify-content: center;
+}
+
+.postcontainer {
+  box-sizing: border-box;
+}
+
+.quill {
+  height: 500px
+}
+
+.editbtns {
+  text-align: right;
+}
+
+
+.HowtoPreview-card-231 {
+  width: 400px;
+}

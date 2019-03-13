@@ -19,7 +19,7 @@ const Root = ({ store }) => (
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
         <Switch>
-          <Route
+          {/* <Route
             exact path="/"
             component={() => {
               window.location.href = 'https://how-to.now.sh/';
@@ -32,9 +32,17 @@ const Root = ({ store }) => (
           <Route path="/post/new" component={NewPost} />
           <Route path="/search" component={SearchContainer} />
           <Route path="/post/sample" component={ViewHowTo} />
-          <Route path="/profile" component={UserProfile} />
+          <Route path="/profile" component={UserProfile} /> */}
           {/* <PrivateRoute path="/dashboard/new" component={NewPost} /> */}
           {/* <PrivateRoute path="/posts" component={Posts} /> */}
+          {/* Delete on commit */}
+          <Route exact path="/(login|signup)" component={Register} />
+          <PrivateRoute path="/dashboard" component={Dashboard} />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/post/new" component={NewPost} />
+          <Route path="/search" component={SearchContainer} />
+          <Route path="/post/sample" component={ViewHowTo} />
+          <Route path="/profile" component={UserProfile} />
         </Switch>
       </MuiThemeProvider>
     </Router>

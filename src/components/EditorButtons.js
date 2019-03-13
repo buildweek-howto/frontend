@@ -17,7 +17,7 @@ const styles = theme => ({
 function FloatingActionButtons(props) {
   const { classes } = props;
   return (
-    <div>
+    <div className="editbtns">
       <Fab disabled aria-label="Delete" className={classes.fab}>
         <DeleteIcon />
       </Fab>

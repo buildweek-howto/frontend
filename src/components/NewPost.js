@@ -8,9 +8,11 @@ class NewPost extends Component {
     return (
       <div className="app">
       <AppBar/>
+      <div className="postcontainer">
       <Editor/>
       <EditorButtons/>
-      {/* Search returned corpuse */}
+      </div>
+      {/* Search returned corpus */}
       </div>
       )
   }
