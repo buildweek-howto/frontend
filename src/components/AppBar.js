@@ -12,6 +12,7 @@ import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import AddBox from '@material-ui/icons/AddBox';
+import Home from '@material-ui/icons/Home';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -20,35 +21,36 @@ import PowerSettingsNew from '@material-ui/icons/PowerSettingsNew';
 
 const styles = theme => ({
   root: {
-    width: '100%',
+    width: '100%'
   },
   grow: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   menuButton: {
     marginLeft: -12,
-    marginRight: 20,
+    marginRight: 20
   },
   title: {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
-    },
+      cursor: 'pointer'
+    }
   },
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
     '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+      backgroundColor: fade(theme.palette.common.white, 0.25)
     },
     marginRight: theme.spacing.unit * 2,
     marginLeft: 0,
     width: '100%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing.unit * 3,
-      width: 'auto',
-    },
+      width: 'auto'
+    }
   },
   searchIcon: {
     width: theme.spacing.unit * 9,
@@ -57,7 +59,7 @@ const styles = theme => ({
     pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   interact: {
     display: 'flex',
@@ -65,7 +67,7 @@ const styles = theme => ({
   },
   inputRoot: {
     color: 'inherit',
-    width: '100%',
+    width: '100%'
   },
   inputInput: {
     paddingTop: theme.spacing.unit,
@@ -75,27 +77,36 @@ const styles = theme => ({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      width: 200,
-    },
+      width: 200
+    }
   },
   sectionDesktop: {
     display: 'none',
     [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
+      display: 'flex'
+    }
   },
   sectionMobile: {
     display: 'flex',
     [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-  },
+      display: 'none'
+    }
+  }
 });
 
 class PrimarySearchAppBar extends React.Component {
   state = {
     anchorEl: null,
-    mobileMoreAnchorEl: null,
+    mobileMoreAnchorEl: null
+  };
+
+  handleHomeClick = (mobile) => {
+    this.props.history.push('/dashboard');
+    if (mobile) this.handleMobileMenuClose();
+  };
+
+  handleNewPost = () => {
+    this.props.history.push('/dashboard/new');
   };
 
   handleProfileMenuOpen = event => {
@@ -118,7 +129,7 @@ class PrimarySearchAppBar extends React.Component {
   handleLogout = () => {
     localStorage.removeItem('userToken');
     this.props.history.replace('/login');
-  }
+  };
 
   render() {
     const { anchorEl, mobileMoreAnchorEl } = this.state;
@@ -132,7 +143,8 @@ class PrimarySearchAppBar extends React.Component {
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
         open={isMenuOpen}
-        onClose={this.handleMenuClose}>
+        onClose={this.handleMenuClose}
+      >
         <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
         <MenuItem onClick={this.handleMenuClose}>Logout</MenuItem>
       </Menu>
@@ -146,13 +158,13 @@ class PrimarySearchAppBar extends React.Component {
         open={isMobileMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleMobileMenuClose}>
+        <MenuItem onClick={() => this.handleHomeClick(true)}>
           <IconButton color="inherit">
             <Badge badgeContent={0} color="secondary">
-              <MailIcon />
+              <Home />
             </Badge>
           </IconButton>
-          <p>Messages</p>
+          <p>Dashboard</p>
         </MenuItem>
         <MenuItem onClick={this.handleMobileMenuClose}>
           <IconButton color="inherit">
@@ -181,8 +193,8 @@ class PrimarySearchAppBar extends React.Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
-            <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-            How To
+            <Typography onClick={this.handleHomeClick} className={classes.title} variant="h6" color="inherit" noWrap>
+              How To
             </Typography>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
@@ -192,22 +204,17 @@ class PrimarySearchAppBar extends React.Component {
                 placeholder="Search…"
                 classes={{
                   root: classes.inputRoot,
-                  input: classes.inputInput,
+                  input: classes.inputInput
                 }}
               />
             </div>
             <div className={classes.interact}>
               <IconButton color="inherit">
-                <AddBox />
+                <AddBox onClick={this.handleNewPost} />
               </IconButton>
             </div>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-              {/* <IconButton color="inherit">
-                <Badge badgeContent={0} color="secondary">
-                  <MailIcon />
-                </Badge>
-              </IconButton> */}
               <IconButton color="inherit">
                 <Badge badgeContent={0} color="secondary">
                   <NotificationsIcon />
@@ -237,7 +244,7 @@ class PrimarySearchAppBar extends React.Component {
 }
 
 PrimarySearchAppBar.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(PrimarySearchAppBar);
