@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactQuill from 'react-quill';
+import { withStyles } from '@material-ui/core/styles';
 import 'react-quill/dist/quill.snow.css';
 
-class Editor extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = { text: '' }
-    this.handleChange = this.handleChange.bind(this)
+const styles = {
+  textarea: {
+    height: '50vh'
   }
+}
+
+class Editor extends React.Component {
+  state = { text: '' }
 
   handleChange = (value) => {
     this.setState({ text: value });
@@ -15,10 +18,9 @@ class Editor extends React.Component {
 
   render() {
     return (
-      <ReactQuill value={this.state.text}
-        onChange={this.handleChange} />
+      <ReactQuill value={this.state.text} onChange={this.handleChange} />
     )
   }
 }
 
-export default Editor;
+export default withStyles(styles)(Editor);

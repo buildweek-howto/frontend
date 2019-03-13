@@ -7,7 +7,6 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Dashboard from './Dashboard';
 import Register from './Register';
-import NewPost from './NewPost';
 import SearchContainer from './SearchContainer';
 import ViewHowTo from './ViewHowTo';
 import UserProfile from './UserProfile';
@@ -28,13 +27,10 @@ const Root = ({ store }) => (
           />
           <Route exact path="/(login|signup)" component={Register} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
-          <Route path="/dashboard" component={Dashboard} />
-          <Route path="/post/new" component={NewPost} />
-          <Route path="/search" component={SearchContainer} />
-          <Route path="/post/sample" component={ViewHowTo} />
-          <Route path="/profile" component={UserProfile} />
-          {/* <PrivateRoute path="/dashboard/new" component={NewPost} /> */}
-          {/* <PrivateRoute path="/posts" component={Posts} /> */}
+          {/* <PrivateRoute path="/search" component={SearchContainer} />
+          <PrivateRoute path="/post/sample" component={ViewHowTo} />
+          <PrivateRoute path="/profile" component={UserProfile} />
+          <PrivateRoute path="/posts" component={Posts} /> */}
         </Switch>
       </MuiThemeProvider>
     </Router>
