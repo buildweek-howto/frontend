@@ -15,7 +15,6 @@ import SearchIcon from '@material-ui/icons/Search';
 import AddBox from '@material-ui/icons/AddBox';
 import Home from '@material-ui/icons/Home';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import PowerSettingsNew from '@material-ui/icons/PowerSettingsNew';
@@ -97,7 +96,7 @@ const styles = theme => ({
   }
 });
 
-class PrimarySearchAppBar extends React.Component {
+class PrimarySearchMenuBar extends React.Component {
   state = {
     anchorEl: null,
     mobileMoreAnchorEl: null
@@ -218,8 +217,8 @@ class PrimarySearchAppBar extends React.Component {
               />
             </div>
             <div className={classes.interact}>
-              <IconButton color="inherit">
-                <AddBox onClick={this.handleNewPost} />
+              <IconButton onClick={this.handleNewPost} color="inherit">
+                <AddBox />
               </IconButton>
             </div>
             <div className={classes.grow} />
@@ -252,7 +251,7 @@ class PrimarySearchAppBar extends React.Component {
   }
 }
 
-PrimarySearchAppBar.propTypes = {
+PrimarySearchMenuBar.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
@@ -261,4 +260,4 @@ const mapStateToProps = ({ searchInput }) => ({ searchInput });
 export default connect(
   mapStateToProps,
   { updateInput }
-)(withStyles(styles)(PrimarySearchAppBar));
+)(withStyles(styles)(PrimarySearchMenuBar));

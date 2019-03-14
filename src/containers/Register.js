@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import RegisterRedirect from './RegisterRedirect';
+import RegisterRedirect from '../components/RegisterRedirect';
 import { connect } from 'react-redux';
 import { useInput } from '../hooks';
 import { authLogin, authSignup } from '../actions';
