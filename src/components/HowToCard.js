@@ -100,7 +100,7 @@ class HowToCard extends React.Component {
 
   handleLike = () => {
     const { edit, post } = this.props;
-    edit(post.id, { ...post, likes: post.likes + 1 });
+    edit(post.id, { likes: post.likes + 1 });
   };
 
   render() {
