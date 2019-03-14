@@ -36,7 +36,7 @@ class Editor extends React.Component {
       <Paper>
       <TextField
           id="standard-name"
-          label="Title"
+          label="Title
           className="textField"
           value={this.state.body}
           onChange={this.handleChange}
