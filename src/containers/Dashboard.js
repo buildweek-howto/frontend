@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchUsers, fetchPosts, fetchCategories, deletePost } from '../actions';
+import { fetchUsers, fetchPosts, fetchCategories, editPost, deletePost } from '../actions';
 import { withStyles } from '@material-ui/core/styles';
 import MenuBar from './MenuBar';
 import HowToCard from '../components/HowToCard';
@@ -21,7 +21,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { classes, history, match, posts, users, deletePost } = this.props;
+    const { classes, history, match, posts, users, editPost, deletePost } = this.props;
 
     return (
       <div>
@@ -31,14 +31,15 @@ class Dashboard extends Component {
         <main>
           <section className={classes.postsContainer}>
             {posts.allPosts &&
-              posts.allPosts.map(({ creator_id, ...rest }) => (
+              posts.allPosts.map(post => (
                 <HowToCard
-                  key={rest.id}
-                  user={users[creator_id]}
+                  key={post.id}
+                  user={users[post.creator_id]}
                   delete={deletePost}
+                  edit={editPost}
                   history={history}
                   match={match}
-                  {...rest} />
+                  post={post} />
               ))}
           </section>
         </main>
@@ -58,5 +59,5 @@ const mapStateToProps = ({ posts, searchInput, users }) => ({
 
 export default connect(
   mapStateToProps,
-  { fetchUsers, fetchPosts, fetchCategories, deletePost }
+  { fetchUsers, fetchPosts, fetchCategories, editPost, deletePost }
 )(withStyles(styles)(Dashboard));

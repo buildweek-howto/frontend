@@ -2,9 +2,15 @@ import { FETCH_POSTS_SUCCESS, ADD_POST_SUCCESS, EDIT_POST_SUCCESS, DELETE_POST_S
 
 export default (state = [], action) => {
   switch (action.type) {
+    case EDIT_POST_SUCCESS:
+      const { id, changedPost } = action.payload;
+      return state.map(post =>
+        post.id === id
+          ? { ...post, changedPost }
+          : post
+      );
     case FETCH_POSTS_SUCCESS:
     case ADD_POST_SUCCESS:
-    case EDIT_POST_SUCCESS:
     case DELETE_POST_SUCCESS:
       return action.payload;
     default:

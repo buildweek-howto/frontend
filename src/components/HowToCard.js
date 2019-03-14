@@ -76,11 +76,6 @@ const styles = theme => ({
 class HowToCard extends React.Component {
   state = { open: false };
 
-  componentDidMount() {
-    const { title, body } = this.props;
-    this.setState({ title, body });
-  }
-
   handleToggle = () => {
     this.setState(state => ({ open: !state.open }));
   };
@@ -94,18 +89,25 @@ class HowToCard extends React.Component {
   };
 
   handleDelete = () => {
-    this.props.delete(this.props.id);
+    this.props.delete(this.props.post.id);
   };
 
   handleEdit = () => {
-    const { title, body, id, match, history } = this.props;
+    const { match, history } = this.props;
+    const { title, body, id } = this.props.post;
     const navigate = match.url.endsWith('new') ? history.replace : history.push;
     navigate(`${match.url}/new`, [title, body, id]);
   };
 
+  handleLike = () => {
+    const { edit, post } = this.props;
+    edit(post.id, { ...post, likes: post.likes + 1 });
+  };
+
   render() {
     const { open } = this.state;
-    const { classes, user, title, body, updated_at } = this.props;
+    const { classes, user } = this.props;
+    const { title, body, updated_at, likes } = this.props.post;
     const initials = user ? (user.firstName[0] + user.lastName[0]).toUpperCase() : 'X';
 
     return (
@@ -165,11 +167,11 @@ class HowToCard extends React.Component {
             <Typography component="p">{body}</Typography>
           </CardContent>
           <CardActions className={classes.actions} disableActionSpacing>
-            <IconButton aria-label="Add to favorites" className={classes.noHover}>
+            <IconButton aria-label="Add to favorites" className={classes.noHover} onClick={this.handleLike}>
               <FavoriteIcon />
             </IconButton>
             {/* TODO: replace these with likes */}
-            <small className={classes.likes}>{Math.floor(Math.random() * 100)}</small>
+            <small className={classes.likes}>{likes}</small>
             <IconButton aria-label="Share" className={classes.noHover}>
               <ShareIcon />
             </IconButton>

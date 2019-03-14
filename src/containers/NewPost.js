@@ -20,12 +20,14 @@ class NewPost extends Component {
 
   handleSubmit = () => {
     const { title, body, id } = this.state.post;
-    const { addPost, editPost } = this.props;
+    const { addPost, editPost, currentUser } = this.props;
+
+    const postData = { title, body, creator_id: 1 }
 
     if (id) {
-      editPost(id, { title, body });
+      editPost(id, postData);
     } else {
-      addPost({ title, body });
+      addPost(postData);
     }
 
     this.setState({ post: initialPost });
