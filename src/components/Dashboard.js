@@ -4,8 +4,9 @@ import { fetchUsers, fetchPosts, fetchCategories } from '../actions';
 import PrivateRoute from './PrivateRoute';
 import AppBar from './AppBar';
 import NewPost from './NewPost';
-import HowToCard from './HowToCard';
+import HowToCard from './PreviewCard';
 import { getFilteredPosts } from '../reducers';
+import Paper from '@material-ui/core/Paper';
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -21,9 +22,14 @@ class Dashboard extends Component {
       <div className="app">
         <AppBar history={history} />
         <PrivateRoute path={`${match.path}/new`} component={NewPost} />
+        <Paper>
         {posts.allPosts && posts.allPosts.map(post => (
           <HowToCard key={post.id} {...post} />
         ))}
+        {posts.allPosts && posts.allPosts.map(post => (
+          <HowToCard key={post.id} {...post} />
+        ))}
+        </Paper>
       </div>
     );
   }
