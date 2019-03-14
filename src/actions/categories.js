@@ -18,7 +18,7 @@ import { serverHandshake } from './auth';
 export const fetchCategories = () => async dispatch => {
   dispatch({ type: FETCH_CATEGORIES_START });
   try {
-    const success = await serverHandshake().get('/auth/categories');
+    const success = await serverHandshake().get('/categories');
     dispatch({ type: FETCH_CATEGORIES_SUCCESS, payload: success.data });
     return success;
   } catch (error) {
@@ -30,7 +30,7 @@ export const fetchCategories = () => async dispatch => {
 export const addCategory = name => async dispatch => {
   dispatch({ type: ADD_CATEGORY_START });
   try {
-    const success = await serverHandshake().post('/auth/categories', name);
+    const success = await serverHandshake(true).post('/categories', name);
     dispatch({ type: ADD_CATEGORY_SUCCESS, payload: success.data });
     return success;
   } catch (error) {
@@ -42,7 +42,7 @@ export const addCategory = name => async dispatch => {
 export const editCategory = (id, name) => async dispatch => {
   dispatch({ type: EDIT_CATEGORY_START });
   try {
-    const success = await serverHandshake().put('/auth/categories', { id, name });
+    const success = await serverHandshake().put('/categories', { id, name });
     dispatch({ type: EDIT_CATEGORY_SUCCESS, payload: success.data });
     return success;
   } catch (error) {
@@ -54,7 +54,7 @@ export const editCategory = (id, name) => async dispatch => {
 export const deleteCategory = id => async dispatch => {
   dispatch({ type: DELETE_CATEGORY_START });
   try {
-    const success = await serverHandshake().delete('/auth/categories', id);
+    const success = await serverHandshake().delete('/categories', id);
     dispatch({ type: DELETE_CATEGORY_SUCCESS, payload: success.data });
     return success;
   } catch (error) {

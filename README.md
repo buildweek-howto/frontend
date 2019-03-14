@@ -33,3 +33,12 @@ UI/Landing Page - [Daniel O'Neill](https://github.com/danpatrickoneill) and [Chr
 Backend Architect - [Kayanna Chandler](https://github.com/yannafaith)
 
 Team Lead - [Thomas Greenhalgh](https://github.com/tgreenhalgh)
+
+
+Parent Components
+- Login/Signup
+- Dashboard
+- Search Modal
+- HowTo Editor
+- HowTo View or Post View
+- Profile

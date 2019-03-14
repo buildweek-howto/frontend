@@ -7,7 +7,7 @@ export default (state = {}, action) => {
     case EDIT_CATEGORY_SUCCESS:
     case DELETE_CATEGORY_SUCCESS:
       return action.payload.reduce(
-        (acc, { id, name }) => ({ ...acc, [id]: name }),
+        (acc, { id, category_name }) => ({ ...acc, [id]: category_name }),
       {});
     default:
       return state;
