@@ -56,7 +56,7 @@ const styles = theme => ({
   }
 });
 
-const AuthForm = ({ classes, authLogin, authSignup, history: { push, replace }, location: { pathname } }) => {
+const Register = ({ classes, authLogin, authSignup, history: { push, replace }, location: { pathname } }) => {
   const [email, setEmail, updateEmail] = useInput();
   const [username, setUsername, updateUsername] = useInput();
   const [password, setPassword, updatePassword] = useInput();
@@ -160,12 +160,11 @@ const AuthForm = ({ classes, authLogin, authSignup, history: { push, replace }, 
   );
 };
 
-AuthForm.propTypes = {
-  classes: PropTypes.object.isRequired,
-  handleSubmit: PropTypes.func.isRequired
+Register.propTypes = {
+  classes: PropTypes.object.isRequired
 };
 
 export default connect(
   null,
   { authLogin, authSignup }
-)(withStyles(styles)(AuthForm));
+)(withStyles(styles)(Register));

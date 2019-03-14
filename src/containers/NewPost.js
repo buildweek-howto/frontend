@@ -19,18 +19,25 @@ class NewPost extends Component {
   };
 
   handleSubmit = () => {
-    const { title, body, id } = this.state.post;
-    const { addPost, editPost, currentUser } = this.props;
+    const { id } = this.state.post;
+    const { addPost, editPost, currentUser, history } = this.props;
 
-    const postData = { title, body, creator_id: 1 }
+    const div = document.createElement('div'); div.innerHTML = this.state.post.body;
+    const body = div.textContent || div.innerText || this.state.post;
+    const creator_id = currentUser.id;
 
-    if (id) {
-      editPost(id, postData);
-    } else {
-      addPost(postData);
-    }
+    this.setState(
+      ({ post }) => ({ post: { ...post, body } }),
+      () => {
+        const postData = id ? this.state.post : { ...this.state.post, creator_id };
 
-    this.setState({ post: initialPost });
+        (Boolean(id) ? editPost(id, postData) : addPost(postData)).then(() => {
+          history.push('/dashboard');
+        });
+
+        this.setState({ post: initialPost });
+      }
+    );
   };
 
   render() {
@@ -47,11 +54,10 @@ class NewPost extends Component {
   }
 }
 
-const mapStateToProps = (state, { location }) => {
-  if (!location.state) return { post: initialPost };
-  const [title, body, id] = location.state;
-  return { post: { title, body, id } };
-}
+const mapStateToProps = (ownState, { location: { state } }) => ({
+  post: state ? state[0] : initialPost,
+  currentUser: ownState.currentUser
+});
 
 export default connect(
   mapStateToProps,
