@@ -93,10 +93,9 @@ class HowToCard extends React.Component {
   };
 
   handleEdit = () => {
-    const { match, history } = this.props;
-    const { title, body, id } = this.props.post;
+    const { match, history, post } = this.props;
     const navigate = match.url.endsWith('new') ? history.replace : history.push;
-    navigate(`${match.url}/new`, [title, body, id]);
+    navigate(`${match.url}/new`, [post]);
   };
 
   handleLike = () => {
@@ -171,7 +170,7 @@ class HowToCard extends React.Component {
               <FavoriteIcon />
             </IconButton>
             {/* TODO: replace these with likes */}
-            <small className={classes.likes}>{likes}</small>
+            <small className={classes.likes}>{likes || 0}</small>
             <IconButton aria-label="Share" className={classes.noHover}>
               <ShareIcon />
             </IconButton>
