@@ -22,23 +22,13 @@ class NewPost extends Component {
     const { id } = this.state.post;
     const { addPost, editPost, currentUser, history } = this.props;
 
-    const div = document.createElement('div'); div.innerHTML = this.state.post.body;
-    const body = div.textContent || div.innerText || this.state.post;
     const creator_id = currentUser.id;
+    const postData = id ? this.state.post : { ...this.state.post, creator_id };
 
-    this.setState(
-      ({ post }) => ({ post: { ...post, body } }),
-      () => {
-        const postData = id ? this.state.post : { ...this.state.post, creator_id };
-
-        (Boolean(id) ? editPost(id, postData) : addPost(postData)).then(() => {
-          history.push('/dashboard');
-        });
-
-        this.setState({ post: initialPost });
-      }
-    );
-  };
+    (Boolean(id) ? editPost(id, postData) : addPost(postData)).then(() => {
+      history.push('/dashboard');
+    });
+};
 
   render() {
     const { title, body } = this.state.post;
