@@ -6,6 +6,7 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Paper from '@material-ui/core/Paper'
+import TextField from '@material-ui/core/TextField';
 
 const styles = theme => ({
   fab: {
@@ -33,6 +34,14 @@ class Editor extends React.Component {
     return (
       <div>
       <Paper>
+      <TextField
+          id="standard-name"
+          label="Title"
+          className="textField"
+          value={this.state.body}
+          onChange={this.handleChange}
+          margin="normal"
+        />
       <ReactQuill value={this.state.body} onChange={this.handleChange} />
       </Paper>
       <Fab color="secondary" aria-label="Delete" onClick={() => { console.log('delete') }} >

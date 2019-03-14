@@ -26,9 +26,6 @@ class Dashboard extends Component {
         {posts.allPosts && posts.allPosts.map(post => (
           <HowToCard key={post.id} {...post} />
         ))}
-        {posts.allPosts && posts.allPosts.map(post => (
-          <HowToCard key={post.id} {...post} />
-        ))}
         </Paper>
       </div>
     );
