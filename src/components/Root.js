@@ -1,13 +1,14 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import theme from '../theme';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import PrivateRoute from './PrivateRoute';
 import Register from '../containers/Register';
 import Dashboard from '../containers/Dashboard';
 import NewPost from '../containers/NewPost';
 // import UserProfile from './UserProfile';
+import theme from '../theme';
 
 const Root = ({ store }) => (
   <Provider store={store}>
