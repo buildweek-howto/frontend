@@ -42,7 +42,7 @@ export const addPost = postData => async dispatch => {
 export const editPost = (id, postData) => async dispatch => {
   dispatch({ type: EDIT_POST_START });
   try {
-    const success = await serverHandshake(true).put('/posts', { id, postData });
+    const success = await serverHandshake(true).put(`/posts/${id}`, postData);
     dispatch({ type: EDIT_POST_SUCCESS, payload: success.data });
     return success;
   } catch (error) {
@@ -54,7 +54,7 @@ export const editPost = (id, postData) => async dispatch => {
 export const deletePost = id => async dispatch => {
   dispatch({ type: DELETE_POST_START });
   try {
-    const success = await serverHandshake(true).delete('/posts', id);
+    const success = await serverHandshake(true).delete(`/posts/${id}`);
     dispatch({ type: DELETE_POST_SUCCESS, payload: success.data });
     return success;
   } catch (error) {

@@ -15,13 +15,18 @@ const styles = theme => ({
 });
 
 function FloatingActionButtons(props) {
-  const { classes } = props;
+  const { classes, handleSubmit, history } = props;
+
+  const abortPost = () => {
+    history.replace('/dashboard');
+  }
+
   return (
     <div>
-      <Fab disabled aria-label="Delete" className={classes.fab}>
+      <Fab aria-label="Delete" className={classes.fab} onClick={abortPost}>
         <DeleteIcon />
       </Fab>
-      <Fab color="primary" aria-label="Add" className={classes.fab}>
+      <Fab onClick={handleSubmit} color="primary" aria-label="Add" className={classes.fab}>
         <AddIcon />
       </Fab>
     </div>

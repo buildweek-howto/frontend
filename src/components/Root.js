@@ -5,12 +5,10 @@ import theme from '../theme';
 import PrivateRoute from './PrivateRoute';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Dashboard from './Dashboard';
-import Register from './Register';
-import SearchContainer from './SearchContainer';
-import ViewHowTo from './ViewHowTo';
-import UserProfile from './UserProfile';
-
+import Register from '../containers/Register';
+import Dashboard from '../containers/Dashboard';
+import NewPost from '../containers/NewPost';
+// import UserProfile from './UserProfile';
 
 const Root = ({ store }) => (
   <Provider store={store}>
@@ -26,11 +24,10 @@ const Root = ({ store }) => (
             }}
           />
           <Route exact path="/(login|signup)" component={Register} />
-          <PrivateRoute path="/dashboard" component={Dashboard} />
-          {/* <PrivateRoute path="/search" component={SearchContainer} />
-          <PrivateRoute path="/post/sample" component={ViewHowTo} />
-          <PrivateRoute path="/profile" component={UserProfile} />
-          <PrivateRoute path="/posts" component={Posts} /> */}
+          <PrivateRoute exact path="/dashboard" component={Dashboard} />
+          <PrivateRoute path="/dashboard/new" component={NewPost} />
+          {/* <PrivateRoute path="/profile" component={UserProfile} />
+          <Route component={NoMatch} /> */}
         </Switch>
       </MuiThemeProvider>
     </Router>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AppBar from './AppBar';
+import MenuBar from '../containers/MenuBar';
 import { Paper, Avatar } from '@material-ui/core';
 
 
@@ -7,7 +7,7 @@ class NewPost extends Component {
   render() {
     return (
       <div className="app">
-      <AppBar/>
+      <MenuBar/>
       <Paper>
         <h1>Avi</h1>
       <Avatar/>
@@ -17,5 +17,5 @@ class NewPost extends Component {
       )
   }
   }
-  
+
   export default NewPost;
