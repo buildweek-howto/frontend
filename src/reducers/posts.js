@@ -6,7 +6,7 @@ export default (state = [], action) => {
       const { id, changedPost } = action.payload;
       return state.map(post =>
         post.id === id
-          ? { ...post, changedPost }
+          ? changedPost
           : post
       );
     case FETCH_POSTS_SUCCESS:
@@ -21,10 +21,13 @@ export default (state = [], action) => {
 const getCategoryPosts = ({ posts_categories }, id) =>
   posts_categories.reduce((acc, cur) => (cur.category_id === id ? [...acc, cur.post_id] : acc), []);
 
-const getPostsBySearch = (state, filter) => ({
-  ...state,
-  allPosts: state.allPosts.filter(({ title, body }) => title.includes(filter) || body.includes(filter))
-});
+const getPostsBySearch = (state, filter) => {
+  const pattern = new RegExp(filter, 'i');
+  return {
+    ...state,
+    allPosts: state.allPosts.filter(({ title, body }) => pattern.test(title) || pattern.test(body))
+  }
+};
 
 const getPostsByCategory = (state, id) => {
   console.log(state);
