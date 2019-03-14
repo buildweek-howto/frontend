@@ -4,13 +4,10 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import theme from '../theme';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Dashboard from './Dashboard/Dashboard';
-import Register from './Register';
-import SearchContainer from './SearchContainer';
-import ViewHowTo from './ViewHowTo';
-import NewPost from './NewPost';
-import CompList from './Testing/CompList';
-
+import Register from '../containers/Register';
+import Dashboard from '../containers/Dashboard';
+import NewPost from '../containers/NewPost';
+// import UserProfile from './UserProfile';
 
 const Root = ({ store }) => (
   <Provider store={store}>
@@ -26,12 +23,10 @@ const Root = ({ store }) => (
             }}
           />
           <Route exact path="/(login|signup)" component={Register} />
-          <Route path="/dashboard" component={Dashboard} />
-          <Route path="/search" component={SearchContainer} />
-          <Route path="/post/sample" component={ViewHowTo} />
-          <Route path="/post/new" component={NewPost} />
-          <Route path="/testing/complist" component={CompList} />
-          {/* <PrivateRoute path="/posts" component={Posts} />  */}
+          <PrivateRoute exact path="/dashboard" component={Dashboard} />
+          <PrivateRoute path="/dashboard/new" component={NewPost} />
+          {/* <PrivateRoute path="/profile" component={UserProfile} />
+          <Route component={NoMatch} /> */}
         </Switch>
       </MuiThemeProvider>
     </Router>
