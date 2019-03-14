@@ -96,7 +96,7 @@ const styles = theme => ({
   }
 });
 
-class PrimarySearchAppBar extends React.Component {
+class PrimarySearchMenuBar extends React.Component {
   state = {
     anchorEl: null,
     mobileMoreAnchorEl: null
@@ -152,7 +152,7 @@ class PrimarySearchAppBar extends React.Component {
         onClose={this.handleMenuClose}
       >
         <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
-        <MenuItem onClick={this.handleMenuClose}>Logout</MenuItem>
+        <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
       </Menu>
     );
 
@@ -217,8 +217,8 @@ class PrimarySearchAppBar extends React.Component {
               />
             </div>
             <div className={classes.interact}>
-              <IconButton color="inherit">
-                <AddBox onClick={this.handleNewPost} />
+              <IconButton onClick={this.handleNewPost} color="inherit">
+                <AddBox />
               </IconButton>
             </div>
             <div className={classes.grow} />
@@ -251,7 +251,7 @@ class PrimarySearchAppBar extends React.Component {
   }
 }
 
-PrimarySearchAppBar.propTypes = {
+PrimarySearchMenuBar.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
@@ -260,4 +260,4 @@ const mapStateToProps = ({ searchInput }) => ({ searchInput });
 export default connect(
   mapStateToProps,
   { updateInput }
-)(withStyles(styles)(PrimarySearchAppBar));
+)(withStyles(styles)(PrimarySearchMenuBar));

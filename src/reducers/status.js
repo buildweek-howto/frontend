@@ -19,7 +19,19 @@ import {
   EDIT_CATEGORY_FAILURE,
   DELETE_CATEGORY_START,
   DELETE_CATEGORY_SUCCESS,
-  DELETE_CATEGORY_FAILURE
+  DELETE_CATEGORY_FAILURE,
+  FETCH_POSTS_START,
+  FETCH_POSTS_SUCCESS,
+  FETCH_POSTS_FAILURE,
+  ADD_POST_START,
+  ADD_POST_SUCCESS,
+  ADD_POST_FAILURE,
+  EDIT_POST_START,
+  EDIT_POST_SUCCESS,
+  EDIT_POST_FAILURE,
+  DELETE_POST_START,
+  DELETE_POST_SUCCESS,
+  DELETE_POST_FAILURE
 } from '../actions/types';
 
 export default (state = {}, action) => {
@@ -59,6 +71,26 @@ export default (state = {}, action) => {
     case DELETE_CATEGORY_SUCCESS:
     case DELETE_CATEGORY_FAILURE:
       return { ...state, deletingCategory: false };
+    case FETCH_POSTS_START:
+      return { ...state, fetchingPosts: true };
+    case FETCH_POSTS_SUCCESS:
+    case FETCH_POSTS_FAILURE:
+      return { ...state, fetchingPosts: false };
+    case ADD_POST_START:
+      return { ...state, addingPost: true };
+    case ADD_POST_SUCCESS:
+    case ADD_POST_FAILURE:
+      return { ...state, addingPost: false };
+    case EDIT_POST_START:
+      return { ...state, editingPost: true };
+    case EDIT_POST_SUCCESS:
+    case EDIT_POST_FAILURE:
+      return { ...state, editingPost: false };
+    case DELETE_POST_START:
+      return { ...state, deletingPost: true };
+    case DELETE_POST_SUCCESS:
+    case DELETE_POST_FAILURE:
+      return { ...state, deletingPost: false };
     default:
       return state;
   }

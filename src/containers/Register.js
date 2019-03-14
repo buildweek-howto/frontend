@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import RegisterRedirect from './RegisterRedirect';
+import RegisterRedirect from '../components/RegisterRedirect';
 import { connect } from 'react-redux';
 import { useInput } from '../hooks';
 import { authLogin, authSignup } from '../actions';
@@ -56,7 +56,7 @@ const styles = theme => ({
   }
 });
 
-const AuthForm = ({ classes, authLogin, authSignup, history: { push, replace }, location: { pathname } }) => {
+const Register = ({ classes, authLogin, authSignup, history: { push, replace }, location: { pathname } }) => {
   const [email, setEmail, updateEmail] = useInput();
   const [username, setUsername, updateUsername] = useInput();
   const [password, setPassword, updatePassword] = useInput();
@@ -160,12 +160,11 @@ const AuthForm = ({ classes, authLogin, authSignup, history: { push, replace }, 
   );
 };
 
-AuthForm.propTypes = {
-  classes: PropTypes.object.isRequired,
-  handleSubmit: PropTypes.func.isRequired
+Register.propTypes = {
+  classes: PropTypes.object.isRequired
 };
 
 export default connect(
   null,
   { authLogin, authSignup }
-)(withStyles(styles)(AuthForm));
+)(withStyles(styles)(Register));
