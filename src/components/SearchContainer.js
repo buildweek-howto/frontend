@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AppBar from './AppBar';
-import HowToCard from './HowToCard';
+import HowToCard from './PreviewCard';
 import { Grid } from '@material-ui/core';
 import { Paper } from '@material-ui/core';
 

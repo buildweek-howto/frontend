@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import AppBar from './AppBar';
+import AppBar from '../AppBar';
 import { Paper, Avatar } from '@material-ui/core';
+import PreviewCard from '../PreviewCard';
 
 
 class NewPost extends Component {
@@ -8,11 +9,13 @@ class NewPost extends Component {
     return (
       <div className="app">
       <AppBar/>
-      <Paper>
-        <h1>Avi</h1>
+        <h2>Avi</h2>
       <Avatar/>
+      <h2>Users How-Tos</h2>
+      <Paper>
+      <PreviewCard/>
+      <PreviewCard/>
       </Paper>
-      <h1>User How-Tos</h1>
       </div>
       )
   }

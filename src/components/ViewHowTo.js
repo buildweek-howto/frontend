@@ -1,34 +1,42 @@
-import React, { Component } from 'react';
+import React from 'react';
 import AppBar from './AppBar';
-import { Paper } from '@material-ui/core';
-import SocialButtons from './SocialButtons';
+import { Paper, Avatar } from '@material-ui/core';
+import Fab from '@material-ui/core/Fab';
+import ShareIcon from '@material-ui/icons/Share';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import CommentIcon from '@material-ui/icons/Comment';
 
-
-class NewPost extends Component {
-  render() {
-    return (
+const ViewHowTo = props => {
+  return (
       <div className="app">
       <AppBar/>
+      <h1>{props.title}</h1>
+      <Avatar onClick={() => { console.log(`User ${props.creator_id}`) }}/> {/* Link to user profile */}
       <Paper>
-        <h1>Hello World!</h1>
-
-        <h2> 1. Cras orci eros, faucibus vitae laoreet</h2>
-        <p>Etiam mattis risus ut aliquam euismod. Curabitur sit amet magna sed leo pretium volutpat. 
-          Pellentesque sem augue, ultrices nec nunc eu, aliquam tincidunt quam. 
-          Vestibulum sit amet tincidunt ex. Cras id consequat lorem. Integer vehicula 
-          finibus dui ac viverra. Vestibulum sollicitudin mi at laoreet cursus. Cras in 
-          mauris id metus vulputate sollicitudin sed ac ante. Vivamus bibendum luctus ex, 
-          a viverra erat bibendum non. Etiam porta ligula a posuere commodo. </p>
-        <h2>2. Etiam ut viverra risus, vitae laoreet sem.</h2>
-        <p> Etiam ut viverra risus, vitae laoreet sem.
-           Vivamus quis velit id libero placerat sollicitudin sed sit amet ex. 
-           Fusce sem turpis, mollis nec cursus a, scelerisque ac eros. Aenean neque lacus. </p>
+        {props.body}
       </Paper>
-      {/* Search returned corpuse */}
-      <SocialButtons/>
+      <Fab color="primary" aria-label="Header" onClick={() => { console.log(`Heart ${props.id}`) }}> {/* idk */}
+        <FavoriteIcon />
+      </Fab>
+      <Fab color="primary" aria-label="Share" onClick={() => { console.log(`Share ${props.id}`) }}> {/* return address*/}
+        <ShareIcon />  
+      </Fab>
+      <Fab variant="extended" aria-label="Comment" onClick={() => { console.log(`Add comment? ${props.id}`) }}> {/* send delete, change to delete?s */}
+        <CommentIcon />
+        Comment
+      </Fab>
       </div>
       )
   }
-  }
   
-  export default NewPost;
+  ViewHowTo.defaultProps = {
+    id:	null,
+    title: 'Sample',
+    created_at: 'createdAt',
+    body:	'sampleBody',
+    likes: 100,
+    updated_at: 'updatedAt',
+    creator_id: 'creatorID',
+  };
+
+  export default ViewHowTo;

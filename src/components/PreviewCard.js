@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
+// import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
+import OpenInBrowser from '@material-ui/icons/OpenInBrowser';
 import Typography from '@material-ui/core/Typography';
-import red from '@material-ui/core/colors/red';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import SocialButtons from './SocialButtons';
+import Fab from '@material-ui/core/Fab';
+import ShareIcon from '@material-ui/icons/Share';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import AccountCircle from '@material-ui/icons/AccountCircle'; //tmp
 
 const styles = theme => ({
   card: {
@@ -32,64 +32,62 @@ const styles = theme => ({
       duration: theme.transitions.duration.shortest,
     }),
   },
-  expandOpen: {
-    transform: 'rotate(180deg)',
+  fab: {
+    margin: theme.spacing.unit,
   },
-  avatar: {
-    backgroundColor: red[500],
+  extendedIcon: {
+    marginRight: theme.spacing.unit,
   },
 });
 
-class RecipeReviewCard extends React.Component {
-  state = { expanded: false };
 
-  handleExpandClick = () => {
-    this.setState(state => ({ expanded: !state.expanded }));
-  };
-
-  render() {
-    const { classes } = this.props;
-
+const HowToCard = props => {
     return (
-      <Card className={classes.card}>
-        <CardHeader
+      <Card>
+        <CardHeader 
           avatar={
-            <Avatar/>
+            <AccountCircle onClick={() => { console.log(`User ${props.creator_id}`) }} />
+            // <Avatar/>
+            // Pass Avatar info here if applicable (when av can take user id)
           }
           action={
-            <IconButton>
-              <MoreVertIcon />
+            <IconButton onClick={() => { console.log(`Go to page ${props.id}`) }} >
+              <OpenInBrowser />
             </IconButton>
           }
+          title={props.title} /* Would be cool if this could be clickable */
+          subheader={`Created: ${props.created_at}`}
         />
-        <h1>Test</h1>
         <CardContent>
           <Typography component="p">
-            This impressive paella is a perfect party dish and a fun meal to cook together with your
-            guests. Add 1 cup of frozen peas along with the mussels, if you like.
+            {props.body}
           </Typography>
         </CardContent>
-        <CardActions className={classes.actions} disableActionSpacing>
-          <SocialButtons/>
-        </CardActions>
-        <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-          <CardContent>
-            <Typography paragraph>
-              Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
-              without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat
-              to medium-low, add reserved shrimp and mussels, tucking them down into the rice, and
-              cook again without stirring, until mussels have opened and rice is just tender, 5 to 7
-              minutes more. (Discard any mussels that don’t open.)
-            </Typography>
-          </CardContent>
-        </Collapse>
-      </Card>
-    );
-  }
-}
+          <CardActions >
+            <Fab color="primary" aria-label="Heart" onClick={() => { console.log(`Heart ${props.id}`) }}>
+              <FavoriteIcon />
+            </Fab>
+            <Fab color="primary" aria-label="Share" onClick={() => { console.log(`Share ${props.id}`) }}>
+              <ShareIcon />
+            </Fab>
+          </CardActions>
+        </Card>
+      );
+    };
 
-RecipeReviewCard.propTypes = {
+
+HowToCard.defaultProps = {
+    id:	null,
+    title: '',
+    created_at: '',
+    body:	'',
+    likes: '',
+    updated_at: '',
+    creator_id: '',
+  };
+
+HowToCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(RecipeReviewCard);
+export default withStyles(styles)(HowToCard);
