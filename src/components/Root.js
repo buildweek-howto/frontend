@@ -7,8 +7,11 @@ import PrivateRoute from './PrivateRoute';
 import Register from '../containers/Register';
 import Dashboard from '../containers/Dashboard';
 import NewPost from '../containers/NewPost';
+import ViewHowTo from './ViewHowTo';
 // import UserProfile from './UserProfile';
 import theme from '../theme';
+
+
 
 const Root = ({ store }) => (
   <Provider store={store}>
@@ -26,6 +29,7 @@ const Root = ({ store }) => (
           <Route exact path="/(login|signup)" component={Register} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <PrivateRoute path="/dashboard/new" component={NewPost} />
+          <PrivateRoute path="/post" component={ViewHowTo} /> {/* Needs post id fed in, convert from props */}
           {/* <PrivateRoute path="/profile" component={UserProfile} />
           <Route component={NoMatch} /> */}
         </Switch>
