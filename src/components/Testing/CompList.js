@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import AppBar from '../AppBar'
-import Avatar from '../Avatar'
+import Avatar from '../UserProfile/Avatar'
 import Editor from '../Editor'
 import NewPost from '../NewPost'
 import PreviewCard from '../PreviewCard'
 import SearchContainer from '../SearchContainer'
-import UserProfile from '../UserProfile'
+import UserProfile from '../UserProfile/UserProfile'
 import ViewHowTo from '../ViewHowTo';
 
 class CompList extends Component {

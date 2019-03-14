@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Editor from './Editor';
 import AppBar from './AppBar';
+import Editor from './Editor';
 
 class NewPost extends Component {
   render() {

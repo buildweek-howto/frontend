@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchUsers, fetchPosts, fetchCategories } from '../actions';
-import PrivateRoute from './PrivateRoute';
-import AppBar from './AppBar';
-import NewPost from './NewPost';
-import HowToCard from './PreviewCard';
-import { getFilteredPosts } from '../reducers';
+import { fetchUsers, fetchPosts, fetchCategories } from '../../actions';
+import PrivateRoute from '../PrivateRoute';
+import AppBar from '../AppBar';
+import NewPost from '../NewPost';
+import HowToCard from '../PreviewCard';
+import { getFilteredPosts } from '../../reducers';
 import Paper from '@material-ui/core/Paper';
 
 class Dashboard extends Component {

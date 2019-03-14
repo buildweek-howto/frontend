@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import theme from '../theme';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Dashboard from './Dashboard';
+import Dashboard from './Dashboard/Dashboard';
 import Register from './Register';
 import SearchContainer from './SearchContainer';
 import ViewHowTo from './ViewHowTo';

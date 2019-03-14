@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import AppBar from './AppBar';
+import AppBar from '../AppBar';
 import { Paper, Avatar } from '@material-ui/core';
-import PreviewCard from './PreviewCard';
+import PreviewCard from '../PreviewCard';
 
 
 class NewPost extends Component {
