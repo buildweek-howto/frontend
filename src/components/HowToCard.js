@@ -15,16 +15,15 @@ import ShareIcon from '@material-ui/icons/Share';
 import MoreVert from '@material-ui/icons/MoreVert';
 import Delete from '@material-ui/icons/Delete';
 import Edit from '@material-ui/icons/Edit';
-
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
-
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import parse from 'html-react-parser';
 
 const styles = theme => ({
   card: {
@@ -163,7 +162,7 @@ class HowToCard extends React.Component {
           </Popper>
           {/* <CardMedia className={classes.media} image="/static/images/cards/paella.jpg" title="Paella dish" /> */}
           <CardContent>
-            <Typography component="p">{body}</Typography>
+            <Typography>{parse(body)}</Typography>
           </CardContent>
           <CardActions className={classes.actions} disableActionSpacing>
             <IconButton aria-label="Add to favorites" className={classes.noHover} onClick={this.handleLike}>
