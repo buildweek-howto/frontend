@@ -10,7 +10,8 @@ import {
 
 export const serverHandshake = (auth) => {
   const options = {
-    baseURL: 'https://yanna-howto.herokuapp.com/api'
+    baseURL: 'https://yanna-howto.herokuapp.com/api',
+    withCredentials: true
   };
 
   if (auth) {
