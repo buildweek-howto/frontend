@@ -25,9 +25,7 @@ export default (state, action) => {
     case ADD_POST_FAILURE:
     case EDIT_POST_FAILURE:
     case DELETE_POST_FAILURE:
-      return action.payload.response
-        ? action.payload.response.data
-        : '?';
+      return (action.payload.response && action.payload.response.data) || (action.payload || '?');
     default:
       return '';
   }
