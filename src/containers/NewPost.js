@@ -28,7 +28,7 @@ class NewPost extends Component {
     (Boolean(id) ? editPost(id, postData) : addPost(postData)).then(() => {
       history.push('/dashboard');
     });
-};
+  };
 
   render() {
     const { title, body } = this.state.post;
@@ -44,9 +44,12 @@ class NewPost extends Component {
   }
 }
 
-const mapStateToProps = (ownState, { location: { state } }) => ({
+const mapStateToProps = (
+  { currentUser },
+  { location: { state } }
+) => ({
   post: state ? state[0] : initialPost,
-  currentUser: ownState.currentUser
+  currentUser
 });
 
 export default connect(
